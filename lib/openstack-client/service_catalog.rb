@@ -14,6 +14,7 @@ class Openstack::Client::ServiceCatalog
   end
 
   # Fetch token details fron service catalog
+  # @return [Hash] token
   def token
     unless defined?(@token)
       @token = {
@@ -32,6 +33,12 @@ class Openstack::Client::ServiceCatalog
   # the first endpoint of the specified type.
   # 
   # See tests for a sample service catalog.
+  # 
+  # @param [Hash] options
+  # @option options [String] :service_type    service type for url. (Default 'identity')
+  # @option options [String] :endpoint_type   endpoint_type for url. (Default 'publicURL')
+  # @option options [String] :attribute       attribute for filter.
+  # @option options [String] :filter_value    filter_value for url.
   def url_for options={}
     service_type  = options[:service_type] || 'identity'
     endpoint_type = options[:endpoint_type] || 'publicURL'

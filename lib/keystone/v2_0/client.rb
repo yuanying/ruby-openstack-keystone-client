@@ -30,18 +30,17 @@ class Keystone::V2_0::Client < ::Openstack::Client
 
   # Creates a new Keystone::V2_0::Client object.
   #
-  # The constructor takes a hash of options, including:
-  #
-  #   :username - Your Openstack username (optional)
-  #   :password - Your Openstack password (optional)
-  #   :tenant_id - Your Openstack tenantId (optional)
-  #   :tenant_name - Your Openstack tenantName (optional)
-  #   :auth_url - Keystone service endpoint for authorization.
-  #   :region_name - The specific service region to use. Defaults to first returned region.
-  #   :token - Whether to retry if your auth token expires (defaults to true)
-  #   :endpoint - A user-supplied endpoint URL for the keystone
-  #               service.  Lazy-authentication is possible for API
-  #               service calls if endpoint is set at instantiation.(optional)
+  # @param [Hash] options
+  # @option options [String] :username Your Openstack username (optional)
+  # @option options [String] :password Your Openstack password (optional)
+  # @option options [String] :tenant_id Your Openstack tenantId (optional)
+  # @option options [String] :tenant_name Your Openstack tenantName (optional)
+  # @option options [String] :auth_url Keystone service endpoint for authorization.
+  # @option options [String] :region_name The specific service region to use. Defaults to first returned region.
+  # @option options [String] :token Whether to retry if your auth token expires (defaults to true)
+  # @option options [String] :endpoint A user-supplied endpoint URL for the keystone
+  #                                    service.  Lazy-authentication is possible for API
+  #                                    service calls if endpoint is set at instantiation.(optional)
   #
   def initialize options={}
     self.username     = options[:username]
@@ -77,7 +76,7 @@ class Keystone::V2_0::Client < ::Openstack::Client
   # then the resulting authenticated client will be scoped to that
   # tenant and contain a service catalog of available endpoints.
   # 
-  # Returns ``true`` if authentication was successful.
+  # @return [boolean] if authentication was successful returns true.
   def authenticate
     self.management_url = self.auth_url
     raw_token = self.tokens.authenticate(
@@ -93,6 +92,7 @@ class Keystone::V2_0::Client < ::Openstack::Client
     return true
   end
 
+  private
   def _extract_service_catalog url, body
     self.service_catalog  = Openstack::Client::ServiceCatalog.new(body)
     self.auth_token       = self.service_catalog.token['id']

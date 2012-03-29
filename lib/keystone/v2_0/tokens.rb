@@ -16,13 +16,13 @@ module Keystone
         super
       end
 
-      # options:
-      #   :username
-      #   :tenant_id
-      #   :tenant_name
-      #   :password
-      #   :token
-      #   :return_raw
+      # @param [Hash] options
+      # @option options [String] :username
+      # @option options [String] :tenant_id
+      # @option options [String] :tenant_name
+      # @option options [String] :password
+      # @option options [String] :token
+      # @option options [String] :return_raw
       def authenticate options
         if options[:token]
           params = { 'auth' => { 'token' => { 'id' => options[:token] } } }
