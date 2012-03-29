@@ -3,7 +3,8 @@ Ruby Openstack Keystone Client
 
 ## Description
 
-This is a client for the OpenStack Keystone/Glance/Nova API. There's a Ruby API.
+This is a client for the OpenStack Keystone API. There's a Ruby API.
+Porting from [python-keystoneclient](https://github.com/openstack/python-keystoneclient).
 
 ## Keystone API
 
