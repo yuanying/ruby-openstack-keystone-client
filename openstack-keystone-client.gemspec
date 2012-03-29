@@ -4,9 +4,9 @@ require File.expand_path('../lib/keystone/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["yuanying", "atoato88"]
   gem.email         = ["yuanying@fraction.jp", "atoato88@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{OpenStack Keystone client for Ruby.}
+  gem.summary       = %q{This is a client for the OpenStack Keystone API. There's a Ruby API.}
+  gem.homepage      = "https://github.com/yuanying/ruby-openstack-keystone-client"
 
   gem.files         = `git ls-files`.split($\)
   gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
