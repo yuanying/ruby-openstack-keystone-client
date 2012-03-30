@@ -92,7 +92,6 @@ class Keystone::V2_0::Client < ::Openstack::Client
     return true
   end
 
-  private
   def _extract_service_catalog url, body
     self.service_catalog  = Openstack::Client::ServiceCatalog.new(body)
     self.auth_token       = self.service_catalog.token['id']
