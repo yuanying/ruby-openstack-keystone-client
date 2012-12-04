@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'openstack-client/base'
+require 'uri'
 
 describe Openstack::Client::Resource do
   let(:manager) { double('manager') }
@@ -36,8 +37,10 @@ describe Openstack::Client::Manager do
 
     context 'with params' do
       it 'should construct url with query from params' do
-        manager.url_with_params( '/test', { 'name' => 'NAME', 'status' => 'stat us' } ).
-          should == '/test?name=NAME&status=stat%20us'
+        url = manager.url_with_params( '/test', { 'name' => 'NAME', 'status' => 'stat us' } )
+        params = (URI.parse url).query.split('&')
+        params.include?('name=NAME').should be_true
+        params.include?('status=stat%20us').should be_true
       end
     end
 
