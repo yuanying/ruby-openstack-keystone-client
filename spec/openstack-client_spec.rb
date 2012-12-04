@@ -8,17 +8,17 @@ describe Openstack::Client do
     let(:url)      { '/url' }
     let(:auth_token) { nil }
     let(:init_params) {{
-      endpoint: endpoint,
-      token:    auth_token
+      :endpoint => endpoint,
+      :token    => auth_token
     }}
     let(:exec_params) {{
-      url: url
+      :url => url
     }}
     let(:rest_client_params) {{
-      url: endpoint + url,
-      headers: {
+      :url => endpoint + url,
+      :headers => {
         'User-Agent' => 'ruby-openstack-client',
-        accept: :json
+        :accept => :json
       }
     }}
     let(:response) { double('response').tap { |res| res.stub(:code){200}; res.stub(:to_s) { '{"a":1}' } } }
