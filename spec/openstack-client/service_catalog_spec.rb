@@ -35,13 +35,13 @@ describe Openstack::Client::ServiceCatalog do
 
     context 'when endpoint_type is adminURL' do
       it 'should return identity service\'s adminURL' do
-        client.url_for(endpoint_type: 'adminURL').should == "http://10.21.55.30:35357/v2.0"
+        client.url_for(:endpoint_type => 'adminURL').should == "http://10.21.55.30:35357/v2.0"
       end
     end
 
     context 'when service_type is compute' do
       it 'should return compute service\'s publicURL' do
-        client.url_for(service_type: 'compute').should == "http://10.21.55.30:8774/v1.1/3"
+        client.url_for(:service_type => 'compute').should == "http://10.21.55.30:8774/v1.1/3"
       end
     end
 
@@ -62,7 +62,7 @@ describe Openstack::Client::ServiceCatalog do
 
     context 'when service_type is compute' do
       it 'should return compute service\'s endpoints' do
-        client.endpoints(service_type: 'compute').should == {
+        client.endpoints(:service_type => 'compute').should == {
           'compute' => [{"adminURL"=>"http://10.21.55.30:8774/v1.1/3", "region"=>"RegionOne", "internalURL"=>"http://10.21.55.30:8774/v1.1/3", "publicURL"=>"http://10.21.55.30:8774/v1.1/3"}]
         }
       end

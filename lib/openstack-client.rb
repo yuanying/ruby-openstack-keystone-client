@@ -15,7 +15,7 @@ class Openstack::Client
     if keystone_or_options.kind_of?(Keystone::V2_0::Client)
       keystone = keystone_or_options
       endpoint_type = options[:endpoint_type] || 'publicURL'
-      self.management_url = keystone.service_catalog.url_for(service_type: 'image', endpoint_type: endpoint_type)
+      self.management_url = keystone.service_catalog.url_for(:service_type => 'image', :endpoint_type => endpoint_type)
       self.auth_token     = keystone.service_catalog.token['id']
     else
       options = keystone_or_options
@@ -27,19 +27,19 @@ class Openstack::Client
   end
 
   def get url, headers={}
-    res = self.execute(method: :get, url: url, headers: headers)
+    res = self.execute(:method => :get, :url => url, :headers => headers)
   end
 
   def post url, payload, headers={}
-    self.execute(method: :post, url: url, headers: headers, payload: payload)
+    self.execute(:method => :post, :url => url, :headers => headers, :payload => payload)
   end
 
   def put url, payload, headers={}
-    self.execute(method: :put, url: url, headers: headers, payload: payload)
+    self.execute(:method => :put, :url => url, :headers => headers, :payload => payload)
   end
 
   def delete url, headers={}
-    self.execute(method: :delete, url: url, headers: headers)
+    self.execute(:method => :delete, :url => url, :headers => headers)
   end
 
   def execute options

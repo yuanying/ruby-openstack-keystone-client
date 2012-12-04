@@ -80,12 +80,12 @@ class Keystone::V2_0::Client < ::Openstack::Client
   def authenticate
     self.management_url = self.auth_url
     raw_token = self.tokens.authenticate(
-      username: username,
-      tenant_id: tenant_id,
-      tenant_name: tenant_name,
-      password: password,
-      token: auth_token,
-      return_raw: true
+      :username => username,
+      :tenant_id => tenant_id,
+      :tenant_name => tenant_name,
+      :password => password,
+      :token => auth_token,
+      :return_raw => true
     )
     self._extract_service_catalog(self.auth_url, raw_token)
     self.user = raw_token['user']
@@ -96,9 +96,9 @@ class Keystone::V2_0::Client < ::Openstack::Client
     self.service_catalog  = Openstack::Client::ServiceCatalog.new(body)
     self.auth_token       = self.service_catalog.token['id']
     self.management_url   = self.service_catalog.url_for(
-                                                    attribute: 'region',
-                                                    filter_value: self.region_name,
-                                                    endpoint_type: 'adminURL'
+                                                    :attribute => 'region',
+                                                    :filter_value => self.region_name,
+                                                    :endpoint_type =>'adminURL'
                                                   )
   end
 end
